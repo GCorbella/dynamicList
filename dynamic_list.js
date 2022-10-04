@@ -7,7 +7,7 @@ function add() {
     var input = document.getElementById("input");
 
     list.innerHTML = ""
-    items.push(idCounter + " " + input.value);
+    items.push(idCounter + ".- " + input.value);
     idCounter ++;
     input.value = "";
     
