@@ -1,12 +1,63 @@
-<script src="dynamic_list.js"></script> 
-<div>
-    <input id="input">
+<script src="node_modules/jquery/dist/jquery.min.js"></script>
+
+<style>
+    .header {
+        padding-left: 50px;
+        background-color: rgb(130, 144, 252);
+    }
+</style>
+
+<div class="header"><h1>Lista</h1></div>
+<div id="buttons">
+<button onclick="showInput()">Añadir</button>
+<button onclick="">Modificar</button>
+<button onclick="">Eliminar</button>
+<br><br>
 </div>
-<div>
-<button onclick="add();">Añadir a la lista</button>
+<div id="inputDiv"><br><br></div>
 </div>
-<div>
-    <h1>Lista</h1>
-    <ul id="list">
-        </ul>
+<div id="list">
+    <table id="data">
+        <thead id="dataHead">
+            <tr><th>Id</th><th>Descripción</th></tr>
+        </thead>
+        <tbody id="dataBody">
+        </tbody>
+    </table>
 </div>
+
+<script>
+    var idCounter = 1;
+    var data = ["Paraguas", "California", "Tucuman", "Coche"];
+
+function showInput() {
+   $('#inputDiv').html('<input id="inputData" type="text id="listInput" onkeypress="enterData(event)"/><div><a>Pulsa Enter para añadir.</a></div>');
+}
+
+function enterData(event) {
+    if (event.keyCode === 13) {
+        printData();
+        $('#inputDiv').html("<br><br>");
+    }
+}
+
+function printData() {
+    var asd = document.getElementById("inputData")
+    $('#dataBody').html("");
+    data.push(asd.value);    
+    console.log(asd.value);
+    for (var i = 0; i < data.length; i++) {
+        let item = data[i];
+        $('#dataBody').append("<tr><td>" + (i + 1) + "</td><td>" + item + "</td></tr>");
+    }
+}
+
+function eliminate(item) {
+   items.splice(item, 1)
+   list.innerHTML = ""
+   for (var i = 0; i < items.length; i++) {
+        let item = items[i];
+        list.innerHTML += "<li>" + item + ' <button id="' + i + '" onclick="eliminate(' + i + ');">Borrar</button></li>';
+    }
+}
+</script> 
